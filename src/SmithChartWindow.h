@@ -6,6 +6,7 @@
 
 #include <gtkmm/window.h>
 #include <gtkmm/button.h>
+#include "SmithWidget.h"
 
 class SmithChartWindow : public Gtk::Window {
     public:
@@ -15,6 +16,7 @@ class SmithChartWindow : public Gtk::Window {
     protected:
         void on_button_clicked();
         Gtk::Button button;
+        SmithWidget smith;
 
     private:
 };

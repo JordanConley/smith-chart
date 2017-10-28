@@ -2,23 +2,20 @@
  * @file HelloWorld.cpp
  */
 
-#include <gtkmm/window.h>
 #include <gtkmm/button.h>
+#include <gtkmm/window.h>
+
 
 #include <iostream>
 
 #include "SmithChartWindow.h"
 
 
-SmithChartWindow::SmithChartWindow() : button("Hello World") {
-    set_border_width(10);
-
-    button.signal_clicked().connect(sigc::mem_fun(*this, &SmithChartWindow::on_button_clicked));
-
-    add(button);
-    button.show();
-
+SmithChartWindow::SmithChartWindow() : smith() {
     set_default_size(500, 500);
+
+    add(smith);
+    smith.show();
 }
 
 void SmithChartWindow::on_button_clicked() {
