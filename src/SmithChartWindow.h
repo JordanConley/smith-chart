@@ -21,6 +21,7 @@ class SmithChartWindow : public Gtk::Window {
 
         bool on_button_press_event(GdkEventButton* button_event) override;
 
+
         Gtk::Button button;
         SmithWidget smith;
 };

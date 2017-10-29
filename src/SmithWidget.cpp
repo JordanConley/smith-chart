@@ -21,17 +21,20 @@ SmithWidget::SmithWidget() {
 
 bool SmithWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
     Gtk::Allocation allocation = get_allocation();
-    const int w = allocation.get_width();
-    const int h = allocation.get_height();
+    const double w = allocation.get_width();
+    const double h = allocation.get_height();
 
-    const double span = 2.5;
+    const double aspect = w / (h == 0 ? 1 : h);
 
-    cr->scale(w / span, h / span);
-    cr->translate(span / 2, span / 2);
+    const double span_h = 2.5;
+    const double span_w = span_h * aspect;
+
+    cr->scale(w / span_w, h / span_h);
+    cr->translate(span_w / 2, span_h / 2);
     cr->set_line_width(0.005);
 
-    re_min = im_min = -span / 2;
-    re_max = im_max = span / 2;
+    re_min = im_min = -span_w / 2;
+    re_max = im_max = span_h / 2;
 
     cr->set_source_rgb(0.0, 0.0, 0.0);
 
@@ -60,7 +63,7 @@ bool SmithWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
     cr->stroke();
 
     cr->set_font_size(0.1);
-    cr->move_to(-span / 2, (-span / 2) + 0.1);
+    cr->move_to(-span_w / 2, (-span_h / 2) + 0.1);
     cr->text_path("Hello!\rSomebody");
     cr->fill();
 
